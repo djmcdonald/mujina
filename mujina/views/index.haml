@@ -1,11 +1,25 @@
 !!! 5
 %html
   %head
-    %title Hello World
+    %title Mujina
+    %link{:type => "text/css", :rel => "stylesheet", :href => "/stylesheets/jquery.mobile.css"}
+    %script(src="/javascript/require.js")
 
   %body
-    %h1 Hello World
+    %div{ :data => { :role => "page" } }
+      %div{ :data => { :role => "header" } }
+        %h1 Mujina
 
-    %p Example using HAML
+      %div{ :data => { :role => "content" } }
+      %p Example using HAML
 
-    %script(src="/javascript/require.js")
+    :javascript
+          requirejs.config({
+              baseUrl: '/javascript',
+              paths: {
+                  "jquery" : '/javascript/jquery',
+                  "jquery-mobile" : "/javascript/jquery.mobile"
+              }
+          });
+
+          requirejs(["jquery", "jquery-mobile"]);
