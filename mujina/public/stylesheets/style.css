@@ -1,0 +1,11 @@
+#tv_guide li {
+    display: inline-block;
+}
+
+#tv_guide li.five {
+    width: 1em;
+}
+
+#tv_guide li.ten {
+    width: 2em;
+}
