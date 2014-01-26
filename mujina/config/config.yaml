@@ -1,0 +1,4 @@
+mythtv:
+  host: localhost
+  port: 6544
+  
