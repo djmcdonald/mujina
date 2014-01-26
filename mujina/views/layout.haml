@@ -1,0 +1,12 @@
+%html
+  %head
+    %title= @title
+    %link{:type => "text/css", :rel => "stylesheet", :href => "/stylesheets/jquery.mobile.css"}
+    %script(src="/javascript/vendors/require.js")
+  %body
+    #header
+      %h1= @page_header
+    #content
+      =yield
+
+    =haml :js, :layout => false

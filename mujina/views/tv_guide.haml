@@ -1,0 +1,10 @@
+#tv_guide
+
+%script#tv-guide-template(type="text/x-handlebars-template")
+  %table#guide-table{ :data => { :role => 'table' } }
+    = hb 'each ProgramGuide.Channels' do
+      %tr
+        %td
+          %div{:hb => 'ChanId'}
+        %td<
+          = hb 'CallSign'
