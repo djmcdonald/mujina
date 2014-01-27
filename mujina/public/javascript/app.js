@@ -1,11 +1,11 @@
 var App = Ember.Application.create();
 
-App.Show = DS.Model.extend({
+App.Channel = DS.Model.extend({
     title: DS.attr('string')
 });
 
 App.Router.map(function() {
-    this.resource('shows');
+    this.resource('channels');
 });
 
 App.Store = DS.Store.extend({
@@ -13,17 +13,17 @@ App.Store = DS.Store.extend({
 });
 
 DS.RESTAdapter.reopen({
-    namespace: 'api'
+    namespace: 'api/tv/guide'
 });
 
-App.ShowsRoute = Ember.Route.extend({
+App.ChannelsRoute = Ember.Route.extend({
     model: function() {
-        return this.store.find('show');
+        return this.store.find('channel');
     }
 });
 
 App.IndexRoute = Ember.Route.extend({
     redirect: function() {
-        this.transitionTo('shows');
+        this.transitionTo('channels');
     }
 });
