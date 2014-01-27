@@ -1,11 +1,11 @@
 var App = Ember.Application.create();
 
-App.Product = DS.Model.extend({
+App.Show = DS.Model.extend({
     title: DS.attr('string')
 });
 
 App.Router.map(function() {
-    this.resource('products');
+    this.resource('shows');
 });
 
 App.Store = DS.Store.extend({
@@ -16,14 +16,14 @@ DS.RESTAdapter.reopen({
     namespace: 'api'
 });
 
-App.ProductsRoute = Ember.Route.extend({
+App.ShowsRoute = Ember.Route.extend({
     model: function() {
-        return this.store.find('product');
+        return this.store.find('show');
     }
 });
 
 App.IndexRoute = Ember.Route.extend({
     redirect: function() {
-        this.transitionTo('products');
+        this.transitionTo('shows');
     }
 });

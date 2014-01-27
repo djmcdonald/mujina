@@ -12,7 +12,7 @@ get '/tv/guide' do
   erb :tv_guide
 end
 
-get '/api/products', :provides => 'json' do
+get '/api/shows', :provides => 'json' do
   @mythtv_converter.tv_guide
 end
 
