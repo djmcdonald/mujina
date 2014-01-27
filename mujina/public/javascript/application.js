@@ -1,3 +1,5 @@
+window.Mujina = Ember.Application.create();
+
 var source = $("#tv-guide-template").html();
 var template = Handlebars.compile(source);
 
