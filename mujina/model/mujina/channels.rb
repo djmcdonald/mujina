@@ -1,3 +1,5 @@
+require 'model/mujina/channel'
+
 class Channels
   def initialize
     @channels = Array.new
@@ -8,7 +10,8 @@ class Channels
   end
 
   def to_json(*a)
-    @channels.push ({ :id => 1, :title => 'test' })
+    @channels.push (Channel.new)
+    @channels.push (Channel.new)
     {
         'channels' => @channels
     }.to_json(*a)
