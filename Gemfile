@@ -1,5 +1,3 @@
 source 'https://rubygems.org'
 gem 'sinatra'
 gem 'shotgun'
-gem 'haml'
-gem 'hamlbars', '~> 2.0'
