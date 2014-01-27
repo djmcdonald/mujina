@@ -1,15 +1,19 @@
 require 'sinatra'
 require 'json'
+require 'services/converter/mythtv_api_converter'
+
+before do
+  @mythtv_converter = MythTVAPIConverter.new
+end
 
 get '/tv/guide' do
   @title = 'TV Guide - Mujina'
   @page_header = 'TV Guide'
-  haml :index
+  erb :tv_guide
 end
 
 get '/api/products', :provides => 'json' do
-  content_type :json
-  { :products => [ { :id => 1, :title => 'Rube Goldberg Breakfast-o-Matic' } ] }.to_json
+  @mythtv_converter.tv_guide
 end
 
 get '/api/tv/guide/:start_date/:end_date', :provides => 'json' do |start_date, end_date|
