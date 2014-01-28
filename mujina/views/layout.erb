@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+    <head>
+        <title><%= @title %></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" type="text/css" href="/stylesheets/mujina.css">
+        <link rel="stylesheet" type="text/css" href="/stylesheets/jquery.mobile.css">
+    </head>
+
+    <body>
+        <div data-role="page" class="content">
+            <div data-role="header">
+                <h1><%= @header %></h1>
+            </div>
+
+            <%= yield %>
+        </div>
+
+        <script src="/javascript/vendors/jquery.js" type="text/javascript"></script>
+        <script src="/javascript/vendors/jquery.mobile.js" type="text/javascript"></script>
+        <script src="/javascript/vendors/handlebars.js" type="text/javascript"></script>
+        <script src="/javascript/vendors/underscore.js" type="text/javascript"></script>
+        <script src="/javascript/vendors/backbone.js" type="text/javascript"></script>
+        <script src="/javascript/app.js" type="text/javascript"></script>
+    </body>
+</html>

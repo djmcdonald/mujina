@@ -19,7 +19,7 @@ end
 
 get '/tv/guide' do
   @title = 'TV Guide - Mujina'
-  @page_header = 'TV Guide'
+  @header = 'TV Guide'
   erb :tv_guide
 end
 
