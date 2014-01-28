@@ -1,13 +1,11 @@
 require 'model/mujina/show'
 
 class Channel
-  def initialize
-    @id = 123
-    @call_sign = 'BBC One' + Random.rand(11).to_s
+  def initialize(id, channel_number, call_sign)
+    @id = id
+    @channel_number = channel_number
+    @call_sign = call_sign
     @shows = Array.new
-
-    #@shows.push Show.new
-    #@shows.push Show.new
   end
 
   def add_show(show)
@@ -17,6 +15,7 @@ class Channel
   def to_json(*a)
     {
         :id => @id,
+        :channel_number => @channel_number,
         :call_sign => @call_sign,
         :shows => @shows
     }.to_json(*a)
