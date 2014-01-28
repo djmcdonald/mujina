@@ -16,6 +16,11 @@ get '/api/tv/guide/channels', :provides => 'json' do
   @mythtv_converter.tv_guide
 end
 
+get '/api/tv/guide/channels/:id', :provides => 'json' do |id|
+  puts "****** " + id
+  @mythtv_converter.tv_guide
+end
+
 get '/api/tv/guide/:start_date/:end_date', :provides => 'json' do |start_date, end_date|
   File.read("fixtures/tv_guide.json")
 end

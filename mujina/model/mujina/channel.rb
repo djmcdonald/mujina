@@ -3,7 +3,7 @@ require 'model/mujina/show'
 class Channel
   def initialize
     @id = 123
-    @call_sign = 'BBC One'
+    @call_sign = 'BBC One' + Random.rand(11).to_s
     @shows = Array.new
 
     #@shows.push Show.new
