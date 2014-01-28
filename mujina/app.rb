@@ -36,6 +36,6 @@ get '/api/tv/guide/:start_date/:end_date', :provides => 'json' do |start_date, e
   File.read("fixtures/tv_guide.json")
 end
 
-get '/api/tv/channel/:id/icon', :provides => 'jpeg' do |id|
+get '/tv/channel/:id/icon', :provides => 'jpeg' do |id|
   File.read("fixtures/channel_icon.jpg")
 end

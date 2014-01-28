@@ -6,22 +6,35 @@
     </head>
 
     <body>
-        <div id="content">
-            Loading TV Guide... <img src="/images/ajax-loader.gif" />
+        <div class="content">
+            <h1>TV Guide</h1>
+            <div id="tv-guide">
+                <p>Loading TV Guide... <img src="/images/ajax-loader.gif" /><p></p>
+            </div>
         </div>
 
         <script type="text/template" id="channels-template">
-            <h1>Channels</h1>
+            <ol class="tv-guide-list">
+                <li>
+                    <ol>
+                        <li>00:00</li>
+                        <li>00:30</li>
+                        <li>01:00</li>
+                        <li>00:30</li>
+                    </ol>
+                </li>
+            <%% _.each(rc.channels, function(channel){ %>
+                <li>
+                    <ol>
+                        <li><img src="/tv/channel/1/icon" /></li>
+                        <li class="channel-details"><%%- channel.channel_number %> - <%%- channel.call_sign %></li>
+                        <li class="channel-details"><%%- channel.shows %> - <%%- channel.call_sign %></li>
 
-            <ul>
-            <%% _.each( rc.channels, function( channel ){ %>
-
-                <li><%%- channel.call_sign %></li>
+                    </ol>
+                </li>
             <%% }); %>
-            </ul>
+            </ol>
         </script>
-
-        <div id="search_container"></div>
 
         <script src="/javascript/vendors/jquery.js" type="text/javascript"></script>
         <script src="/javascript/vendors/handlebars.js" type="text/javascript"></script>

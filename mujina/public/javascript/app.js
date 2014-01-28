@@ -16,7 +16,7 @@
         render: function () {
             this.collection.each(function (model) {
                 var template = _.template( $("#channels-template").html(), model.toJSON());
-                $('#content').html( template );
+                $('#tv-guide').html( template );
             }, this);
         }
     });
