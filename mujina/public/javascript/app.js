@@ -1,36 +1,35 @@
-var App = Ember.Application.create({
-    LOG_TRANSITIONS: true,
-    LOG_BINDINGS: true,
-    LOG_VIEW_LOOKUPS: true,
-    LOG_STACKTRACE_ON_DEPRECATION: true,
-    LOG_VERSION: true,
-    debugMode: true
-});
+(function ($) {
+    _.templateSettings.variable = "rc";
 
-App.Channel = DS.Model.extend({
-    call_sign: DS.attr('string')
-});
+    var Channels = {};
 
-App.Router.map(function() {
-    this.resource('channels');
-});
+    Channels.Collection = Backbone.Collection.extend({
+        url: '/api/tv/guide/channels'
+    });
 
-App.Store = DS.Store.extend({
-    adapter: 'DS.RESTAdapter'
-});
+    Channels.Views = {};
 
-DS.RESTAdapter.reopen({
-    namespace: 'api/tv/guide'
-});
+    Channels.Views.List = Backbone.View.extend({
+        initialize: function () {
+            this.collection.bind('add', this.render, this);
+        },
+        render: function () {
+            this.collection.each(function (model) {
+                var template = _.template( $("#channels-template").html(), model.toJSON());
+                // Load the compiled HTML into the Backbone "el"
+                $('#content').html( template );
+            }, this);
+        }
+    });
 
-App.ChannelsRoute = Ember.Route.extend({
-    model: function() {
-        return this.store.findAll('channel');
-    }
-});
+    $(function () {
+        var collection = new Channels.Collection(),
+            view = new Channels.Views.List({
+                collection: collection
+            });
 
-App.IndexRoute = Ember.Route.extend({
-    redirect: function() {
-        this.transitionTo('channels');
-    }
-});
+        collection.fetch();
+    });
+
+
+})(jQuery);

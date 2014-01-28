@@ -5,27 +5,26 @@
     </head>
 
     <body>
-        <script type="text/x-handlebars">
-            <div class="main">
-                <h1>Hello World</h1>
-                {{#link-to "channels"}}Start rolling dice!{{/link-to}}
-                {{outlet}}
-            </div>
-        </script>
+        <div id="content">
+            Loading TV Guide...
+        </div>
 
-        <script type="text/x-handlebars" data-template-name="channels">
-            <h2>Shows</h2>
+        <script type="text/template" id="channels-template">
+            <h1>Channels</h1>
+
             <ul>
-                {{#each}}
-                <li>Hello, {{call_sign}}!</li>
-                {{/each}}
+            <%% _.each( rc.channels, function( channel ){ %>
+                <li><%%- channel.call_sign %></li>
+            <%% }); %>
             </ul>
         </script>
 
+        <div id="search_container"></div>
+
         <script src="/javascript/vendors/jquery.js" type="text/javascript"></script>
         <script src="/javascript/vendors/handlebars.js" type="text/javascript"></script>
-        <script src="/javascript/vendors/ember.js" type="text/javascript"></script>
-        <script src="/javascript/vendors/ember-data.js" type="text/javascript"></script>
+        <script src="/javascript/vendors/underscore.js" type="text/javascript"></script>
+        <script src="/javascript/vendors/backbone.js" type="text/javascript"></script>
         <script src="/javascript/app.js" type="text/javascript"></script>
     </body>
 </html>
