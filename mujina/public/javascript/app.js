@@ -16,7 +16,6 @@
         render: function () {
             this.collection.each(function (model) {
                 var template = _.template( $("#channels-template").html(), model.toJSON());
-                // Load the compiled HTML into the Backbone "el"
                 $('#content').html( template );
             }, this);
         }
