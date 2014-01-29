@@ -1,4 +1,5 @@
 (function ($) {
+    $('tooltip').tooltip();
     _.templateSettings.variable = "rc";
 
     var Channels = {};

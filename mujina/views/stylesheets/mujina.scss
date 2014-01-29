@@ -1,8 +1,45 @@
-@import "compass/css3";
-@import "compass/typography/lists/inline-list";
-
-html {
-}
+@import "compass/typography/text/ellipsis";
 
 body {
+  padding-top: 50px;
 }
+
+.content {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.grid-header {
+  background-color: rgba(86, 61, 124, 0.15);
+  border: 1px solid rgba(86, 61, 124, 0.2);
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+
+.channel-row {
+  background-color: #808080;
+  border: 1px solid rgba(86, 61, 124, 0.2);
+  padding-bottom: 15px;
+  padding-top: 15px;
+  @include ellipsis();
+}
+
+.col-xs-1-2-5,
+.col-xs-1-5,
+.col-xs-2,
+.col-xs-2-5 {
+  float: left;
+}
+
+.col-xs-1-2-5 {
+  width: 10.416666667%;
+}
+
+.col-xs-1-5 {
+  width: 12.499995%;
+}
+
+.col-xs-2-5 {
+  width: 20.733325%;
+}
+

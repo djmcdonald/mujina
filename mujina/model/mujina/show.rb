@@ -22,16 +22,14 @@ class Show
 
   def to_json(*a)
     {
-        :show => {
-            :id => @id,
-            :start_time => @start_time,
-            :end_time => @end_time,
-            :title => @title,
-            :description => @description,
-            :category => @category,
-            :repeat => @repeat,
-            :duration => 'five'
-        }
+        :id => @id,
+        :start_time => @start_time,
+        :end_time => @end_time,
+        :title => @title,
+        :description => @description,
+        :category => @category,
+        :repeat => @repeat,
+        :duration => 'five'
     }.to_json(*a)
   end
 end
