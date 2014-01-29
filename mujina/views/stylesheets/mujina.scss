@@ -24,11 +24,21 @@ body {
   @include ellipsis();
 }
 
+.col-xs-0-8,
 .col-xs-1-2-5,
 .col-xs-1-5,
 .col-xs-2,
 .col-xs-2-5 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
   float: left;
+}
+
+.col-xs-0-8 {
+  width: 6.666666667%;
+
 }
 
 .col-xs-1-2-5 {

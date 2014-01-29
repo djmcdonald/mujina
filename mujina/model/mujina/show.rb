@@ -3,21 +3,10 @@ class Show
     @id = id
     @start_time = DateTime.parse(start_time)
     @end_time = DateTime.parse(end_time)
-    puts "****** st=" + @start_time.to_s + " et =" + @end_time.to_s
     @title = title
     @description = description
     @category = category
     @repeat = repeat
-  end
-
-  #    @start_time = '2014-01-25T12:45:00Z'
-  #@end_time = '2014-01-25T13:45:00Z'
-  #@title = 'This is a test'
-  #@category = 'Comedy'
-  #@repeat = false
-
-  def duration_in_words
-    'five'
   end
 
   def to_json(*a)
@@ -29,7 +18,24 @@ class Show
         :description => @description,
         :category => @category,
         :repeat => @repeat,
-        :duration => 'five'
+        :duration_class => duration_class
     }.to_json(*a)
+  end
+
+  private
+
+  def duration_class
+    difference = ((@end_time - @start_time) * 24 * 60).to_i
+
+    # The whole grid represents 120 minutes
+    if difference == 120
+      '10'
+    elsif difference == 90
+      '7-5'
+    elsif difference == 60
+      '5'
+    elsif difference == 10
+      '0-8'
+    end
   end
 end
