@@ -2,15 +2,15 @@
     $('tooltip').tooltip();
     _.templateSettings.variable = "rc";
 
-    var Channels = {};
+    var Guide = {};
 
-    Channels.Collection = Backbone.Collection.extend({
+    Guide.Collection = Backbone.Collection.extend({
         url: '/api/tv/guide/channels'
     });
 
-    Channels.Views = {};
+    Guide.Views = {};
 
-    Channels.Views.List = Backbone.View.extend({
+    Guide.Views.List = Backbone.View.extend({
         initialize: function () {
             this.collection.bind('add', this.render, this);
         },
@@ -23,8 +23,8 @@
     });
 
     $(function () {
-        var collection = new Channels.Collection(),
-            view = new Channels.Views.List({
+        var collection = new Guide.Collection(),
+            view = new Guide.Views.List({
                 collection: collection
             });
 
