@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col-xs-2 channel-row"><%%- channel.call_sign %> - <%%- channel.number %></div>
         <%% _.each(channel.shows, function(show) { %>
-        <div class="col-xs-<%%- show.duration_class %> channel-row <%%- show.category %>" data-toggle="tooltip" title="<%%- show.title %> - <%%- show.description %>">
+        <div class="col-xs-2 channel-row <%%- show.category %>" data-toggle="tooltip" title="<%%- show.title %> - <%%- show.description %>">
             <%%- show.title %> - <%%- show.description %>
         </div>
         <%% }); %>

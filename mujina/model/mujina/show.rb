@@ -18,24 +18,13 @@ class Show
         :description => @description,
         :category => @category,
         :repeat => @repeat,
-        :duration_class => duration_class
+        :duration => duration
     }.to_json(*a)
   end
 
   private
 
-  def duration_class
-    difference = ((@end_time - @start_time) * 24 * 60).to_i
-
-    # The whole grid represents 120 minutes
-    if difference == 120
-      '10'
-    elsif difference == 90
-      '7-5'
-    elsif difference == 60
-      '5'
-    elsif difference == 10
-      '0-8'
-    end
+  def duration
+    ((@end_time - @start_time) * 24 * 60).to_i
   end
 end

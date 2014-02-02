@@ -16,6 +16,7 @@
         },
         render: function () {
             this.collection.each(function (model) {
+                _.extend(model, viewHelpers);
                 var template = _.template( $("#channels-template").html(), model.toJSON());
                 $('#tv-guide').html( template );
             }, this);

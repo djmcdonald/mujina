@@ -21,6 +21,9 @@ class Channels
     @channels.push (first_channel)
     @channels.push (second_channel)
     {
+        'duration' => 60,
+        'start_time' => Time.now,
+        'end_time' => Time.now + (60 * 60),
         'channels' => @channels
     }.to_json(*a)
   end
