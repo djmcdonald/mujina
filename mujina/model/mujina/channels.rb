@@ -16,7 +16,7 @@ end
 
 class Channels
   def initialize(start_time = nil)
-    @start_time = start_time || Time.now.floor(1.hour)
+    @start_time = start_time.floor(1.hour) || Time.now.floor(1.hour)
     @end_time = @start_time + 1.hour
     @channels = Array.new
   end
@@ -27,7 +27,7 @@ class Channels
 
   def to_json(*a)
     show = Show.new(1, '2014-01-25T12:45:00Z', '2014-01-25T12:55:00Z', 'This is a show', 'A small description', 'Comedy', true)
-    show2 = Show.new(1, '2014-01-25T12:55:00Z', '2014-01-25T13:55:00Z', 'Eastenders', 'A small description', 'Comedy', true)
+    show2 = Show.new(1, '2014-01-25T12:55:00Z', '2014-01-25T13:35:00Z', 'Eastenders', 'A small description', 'Comedy', true)
     first_channel = Channel.new(1, 101, "BBC One")
     first_channel.add_show show
     first_channel.add_show show2
@@ -37,8 +37,8 @@ class Channels
     @channels.push (second_channel)
     {
         'duration' => duration,
-        'start_time' => @start_time,
-        'end_time' => @end_time,
+        'start_time' => @start_time.strftime('%Y-%m-%d %H:%M:%S'),
+        'end_time' => @end_time.strftime('%Y-%m-%d %H:%M:%S'),
         'channels' => @channels
     }.to_json(*a)
   end

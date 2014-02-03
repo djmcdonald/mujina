@@ -2,6 +2,14 @@
     $('tooltip').tooltip();
     _.templateSettings.variable = "rc";
 
+
+    Test = Backbone.Model.extend({
+        urlRoot: "/api/tv/guide/channels",
+        defaults : {
+            id: null
+        }
+    })
+
     var Guide = {};
 
     Guide.Collection = Backbone.Collection.extend({

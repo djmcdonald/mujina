@@ -5,21 +5,17 @@
 <script type="text/template" id="channels-template">
     <div class="row">
         <div class="col-xs-2 grid-header">&nbsp;</div>
-        <div class="col-xs-1-2-5 grid-header">00:00</div>
-        <div class="col-xs-1-2-5 grid-header">00:15</div>
-        <div class="col-xs-1-2-5 grid-header">00:30</div>
-        <div class="col-xs-1-2-5 grid-header">00:45</div>
-        <div class="col-xs-1-2-5 grid-header">01:00</div>
-        <div class="col-xs-1-2-5 grid-header">01:15</div>
-        <div class="col-xs-1-2-5 grid-header">01:30</div>
-        <div class="col-xs-1-2-5 grid-header">01:45</div>
+        <div class="col-xs-2-5 grid-header"><%%- moment(rc.start_time, 'YYYY-MM-DD HH:mm:ss').format('HH:mm') %></div>
+        <div class="col-xs-2-5 grid-header"><%%- moment(rc.start_time, 'YYYY-MM-DD HH:mm:ss').add('seconds', 915).format('HH:mm') %></div>
+        <div class="col-xs-2-5 grid-header"><%%- moment(rc.start_time, 'YYYY-MM-DD HH:mm:ss').add('seconds', 1830).format('HH:mm') %></div>
+        <div class="col-xs-2-5 grid-header"><%%- moment(rc.start_time, 'YYYY-MM-DD HH:mm:ss').add('seconds', 2745).format('HH:mm') %></div>
     </div>
 
     <%% _.each(rc.channels, function(channel){ %>
     <div class="row">
         <div class="col-xs-2 channel-row"><%%- channel.call_sign %> - <%%- channel.number %></div>
         <%% _.each(channel.shows, function(show) { %>
-        <div class="col-xs-2 channel-row <%%- show.category %>" data-toggle="tooltip" title="<%%- show.title %> - <%%- show.description %>">
+        <div class="col-xs-2-5 channel-row <%%- show.category %>" style="width: <%%- ((show.duration / rc.duration) * 100) - 2.4 %>%;" data-toggle="tooltip" title="<%%- show.title %> - <%%- show.description %>">
             <%%- show.title %> - <%%- show.description %>
         </div>
         <%% }); %>

@@ -24,12 +24,11 @@ get '/tv/guide' do
 end
 
 get '/api/tv/guide/channels', :provides => 'json' do
-  @mythtv_converter.tv_guide
+  @mythtv_converter.tv_guide Time.now
 end
 
-get '/api/tv/guide/channels/:id', :provides => 'json' do |id|
-  puts "****** " + id
-  @mythtv_converter.tv_guide
+get '/api/tv/guide/channels/:start', :provides => 'json' do |start|
+  @mythtv_converter.tv_guide DateTime.parse(start).to_time
 end
 
 get '/api/tv/guide/:start_date/:end_date', :provides => 'json' do |start_date, end_date|
