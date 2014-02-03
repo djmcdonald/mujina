@@ -1,8 +1,22 @@
+require 'active_support/core_ext/numeric'
 require 'model/mujina/channel'
 require 'model/mujina/show'
 
+class Time
+  # Time#round already exists with different meaning in Ruby 1.9
+  def round_off(seconds = 60)
+    Time.at((self.to_f / seconds).round * seconds)
+  end
+
+  def floor(seconds = 60)
+    Time.at((self.to_f / seconds).floor * seconds)
+  end
+end
+
 class Channels
-  def initialize
+  def initialize(start_time = nil)
+    @start_time = start_time || Time.now.floor(1.hour)
+    @end_time = @start_time + 1.hour
     @channels = Array.new
   end
 
@@ -21,10 +35,15 @@ class Channels
     @channels.push (first_channel)
     @channels.push (second_channel)
     {
-        'duration' => 60,
-        'start_time' => Time.now,
-        'end_time' => Time.now + (60 * 60),
+        'duration' => duration,
+        'start_time' => @start_time,
+        'end_time' => @end_time,
         'channels' => @channels
     }.to_json(*a)
+  end
+
+  private
+  def duration
+    (@end_time - @start_time).to_i
   end
 end
