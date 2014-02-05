@@ -10,7 +10,7 @@
         <%% }); %>
     </div>
 
-    <%% _.each(rc.channels, function(channel){ %>
+    <%% _.each(rc.get('channels'), function(channel){ %>
     <div class="row">
         <div class="col-xs-2 channel-row"><%%- channel.call_sign %> - <%%- channel.number %></div>
         <%% _.each(channel.shows, function(show) { %>
