@@ -2,7 +2,6 @@
     $('tooltip').tooltip();
     _.templateSettings.variable = "rc";
 
-
     var Guide = Backbone.Model.extend({
         defaults: {
             duration: 1,
@@ -10,14 +9,15 @@
             start_time: null
         },
         time_ranges: function(){
-            var start = moment(this.get('start_time'), 'YYYY-MM-DD HH:mm:ss');
-            var interval = this.get('duration')
             // Fixed at four intervals for now.
+            var time_format = 'HH:mm';
+            var start = moment(this.get('start_time'), 'YYYY-MM-DD HH:mm:ss');
+            var interval = this.get('duration');
             return [
-                start.format('HH:mm'),
-                start.add('seconds', interval).format('HH:mm'),
-                start.add('seconds', interval * 2).format('HH:mm'),
-                start.add('seconds', interval * 3).format('HH:mm')
+                start.format(time_format),
+                start.add('seconds', interval).format(time_format),
+                start.add('seconds', interval * 2).format(time_format),
+                start.add('seconds', interval * 3).format(time_format)
             ];
         }
     });
@@ -25,7 +25,7 @@
     var GuideCollection = {};
 
     GuideCollection.Collection = Backbone.Collection.extend({
-        model:Guide,
+        model: Guide,
         url: '/api/tv/guide/channels'
     });
 
