@@ -5,10 +5,9 @@
 <script type="text/template" id="channels-template">
     <div class="row">
         <div class="col-xs-2 grid-header">&nbsp;</div>
-        <div class="col-xs-2-5 grid-header"><%%- moment(rc.start_time, 'YYYY-MM-DD HH:mm:ss').format('HH:mm') %></div>
-        <div class="col-xs-2-5 grid-header"><%%- moment(rc.start_time, 'YYYY-MM-DD HH:mm:ss').add('seconds', 915).format('HH:mm') %></div>
-        <div class="col-xs-2-5 grid-header"><%%- moment(rc.start_time, 'YYYY-MM-DD HH:mm:ss').add('seconds', 1830).format('HH:mm') %></div>
-        <div class="col-xs-2-5 grid-header"><%%- moment(rc.start_time, 'YYYY-MM-DD HH:mm:ss').add('seconds', 2745).format('HH:mm') %></div>
+        <%% _.each(rc.time_ranges(), function(time_range) { %>
+            <div class="col-xs-2-5 grid-header"><%%- time_range %></div>
+        <%% }); %>
     </div>
 
     <%% _.each(rc.channels, function(channel){ %>
