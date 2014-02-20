@@ -2,6 +2,8 @@ require 'compass'
 require 'sinatra'
 require 'json'
 require 'services/converter/mythtv_api_converter'
+require 'active_support/core_ext/numeric'
+require 'support/time'
 
 before do
   @mythtv_converter = MythTVAPIConverter.new
@@ -24,11 +26,15 @@ get '/tv/guide' do
 end
 
 get '/api/tv/guide/channels', :provides => 'json' do
-  @mythtv_converter.tv_guide Time.now
+  guide_start_time = Time.now.floor(1.hour)
+  guide_end_time = guide_start_time + 1.hour
+  @mythtv_converter.tv_guide guide_start_time, guide_end_time
 end
 
 get '/api/tv/guide/channels/:start', :provides => 'json' do |start|
-  @mythtv_converter.tv_guide DateTime.parse(start).to_time
+  guide_start_time = DateTime.parse(start).to_time
+  guide_end_time = guide_start_time + 1.hour
+  @mythtv_converter.tv_guide guide_start_time, guide_end_time
 end
 
 get '/api/tv/guide/:start_date/:end_date', :provides => 'json' do |start_date, end_date|

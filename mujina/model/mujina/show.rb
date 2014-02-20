@@ -1,8 +1,8 @@
 class Show
   def initialize(id, start_time, end_time, title, description, category, repeat)
     @id = id
-    @start_time = DateTime.parse(start_time).to_time
-    @end_time = DateTime.parse(end_time).to_time
+    @start_time = start_time #DateTime.parse(start_time).to_time
+    @end_time = end_time #DateTime.parse(end_time).to_time
     @title = title
     @description = description
     @category = category

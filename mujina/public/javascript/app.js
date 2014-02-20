@@ -12,12 +12,12 @@
             // Fixed at four intervals for now.
             var time_format = 'HH:mm';
             var start = moment(this.get('start_time'), 'YYYY-MM-DD HH:mm:ss');
-            var interval = this.get('duration');
+            var interval = this.get('duration') / 4;
             return [
                 start.format(time_format),
                 start.add('seconds', interval).format(time_format),
-                start.add('seconds', interval * 2).format(time_format),
-                start.add('seconds', interval * 3).format(time_format)
+                start.add('seconds', interval).format(time_format),
+                start.add('seconds', interval).format(time_format)
             ];
         }
     });
@@ -26,7 +26,7 @@
 
     GuideCollection.Collection = Backbone.Collection.extend({
         model: Guide,
-        url: '/api/tv/guide/channels'
+        url: '/api/tv/guide/channels/2014-02-08+11:00:00'
     });
 
     GuideCollection.Views = {};
