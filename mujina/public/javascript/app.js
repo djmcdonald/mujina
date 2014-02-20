@@ -2,13 +2,31 @@
     $('tooltip').tooltip();
     _.templateSettings.variable = "rc";
 
-    var Guide = Backbone.Model.extend({
+    var Channel = Backbone.RelationalModel.extend({
+       width: function() {
+           return 42;
+       }
+    });
+
+    var ChannelCollection = Backbone.Collection.extend({
+        model: Channel
+    });
+
+    var Guide = Backbone.RelationalModel.extend({
         defaults: {
             duration: 1,
             end_time: null,
             start_time: null
         },
-        time_ranges: function(){
+
+        relations: [{
+            type: Backbone.HasMany,
+            key: 'channels',
+            relatedModel: Channel,
+            collectionType: ChannelCollection
+        }],
+
+        time_ranges : function() {
             // Fixed at four intervals for now.
             var time_format = 'HH:mm';
             var start = moment(this.get('start_time'), 'YYYY-MM-DD HH:mm:ss');

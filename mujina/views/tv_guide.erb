@@ -10,9 +10,9 @@
         <%% }); %>
     </div>
 
-    <%% _.each(rc.get('channels'), function(channel){ %>
+    <%% rc.get('channels').each(function(channel){ %>
     <div class="row">
-        <div class="col-xs-2 channel-row"><%%- channel.call_sign %> - <%%- channel.number %></div>
+        <div class="col-xs-2 channel-row"><%%- channel.get('call_sign') %> - <%%- channel.get('number') %></div>
         <%% _.each(channel.shows, function(show) { %>
         <div class="col-xs-no-width channel-row" style="width: <%%- ((show.duration / rc.get('duration')) * 83) %>%;" data-toggle="tooltip" title="<%%- show.title %> - <%%- show.description %>">
             <%%- show.title %> - <%%- show.description %>
