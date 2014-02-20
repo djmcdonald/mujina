@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-xs-2 channel-row"><%%- channel.call_sign %> - <%%- channel.number %></div>
         <%% _.each(channel.shows, function(show) { %>
-        <div class="col-xs-no-width channel-row" style="width: <%%- (((show.duration / rc.get('duration')) * 100) - 16.666666667) %>%;" data-toggle="tooltip" title="<%%- show.title %> - <%%- show.description %>">
+        <div class="col-xs-no-width channel-row" style="width: <%%- ((show.duration / rc.get('duration')) * 83) %>%;" data-toggle="tooltip" title="<%%- show.title %> - <%%- show.description %>">
             <%%- show.title %> - <%%- show.description %>
         </div>
         <%% }); %>
