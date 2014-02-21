@@ -15,8 +15,8 @@
             return description;
         },
         popover: function() {
-            var start = moment(this.get('start_time'), 'YYYY-MM-DD HH:mm:ss Z').format('HH:mm');
-            var end = moment(this.get('end_time'), 'YYYY-MM-DD HH:mm:ss Z');
+            var start = moment(this.get('start_time'), 'YYYY-MM-DD HH:mm:ss Z').format('HH:mmA');
+            var end = moment(this.get('end_time'), 'YYYY-MM-DD HH:mm:ss Z').format('HH:mmA');
             var popover = "";
             if (this.get('description')) {
                 popover += "<p>"
@@ -24,9 +24,15 @@
                     + "</p>";
             }
 
-            popover += "<p>" + start + "</p>";
+            popover += "<p>" + start + " - " + end + "</p>";
+            popover += "<p>" + this.duration_in_minutes() + " minutes</p>"
 
             return popover;
+        },
+        duration_in_minutes: function() {
+            var start = moment(this.get('start_time'), 'YYYY-MM-DD HH:mm:ss Z');
+            var end = moment(this.get('end_time'), 'YYYY-MM-DD HH:mm:ss Z');
+            return end.subtract(start).format('m');
         }
     });
 
