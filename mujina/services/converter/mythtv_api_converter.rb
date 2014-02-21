@@ -5,6 +5,7 @@ require 'model/mujina/show'
 
 class MythTVAPIConverter
   def tv_guide(guide_start_date, guide_end_date)
+    id = 1
     guide = Channels.new guide_start_date, guide_end_date
 
     response_body = File.read("fixtures/tv_guide.json")
@@ -29,7 +30,7 @@ class MythTVAPIConverter
 
         #(id, start_time, end_time, title, description, category, repeat)
         show = Show.new(
-          1,
+          id,
           programme_start_time,
           programme_end_time,
           program['Title'],
@@ -37,6 +38,7 @@ class MythTVAPIConverter
           program['Category'],
           program['Repeat'])
         channel.add_show show
+        id+= 1
       end
 
       guide.add_channel channel

@@ -2,10 +2,26 @@
     $('tooltip').tooltip();
     _.templateSettings.variable = "rc";
 
+    var Show = Backbone.RelationalModel.extend({
+        defaults: {
+            title: null
+        },
+        width: function() {
+            return (this.get('duration') / 3600) * 83;
+        }
+    });
+
+    var ShowCollection = Backbone.Collection.extend({
+       model: Show
+    });
+
     var Channel = Backbone.RelationalModel.extend({
-       width: function() {
-           return 42;
-       }
+        relations: [{
+            type: Backbone.HasMany,
+            key: 'shows',
+            relatedModel: Show,
+            collectionType: ShowCollection
+        }]
     });
 
     var ChannelCollection = Backbone.Collection.extend({
