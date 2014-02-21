@@ -80,7 +80,6 @@
             ];
         },
         currently_browsing: function() {
-            //Fri Feb 21, 2014, 09:00 PM
             return moment(this.get('start_time'), 'YYYY-MM-DD HH:mm:ss Z').format('ddd Do MMM, YYYY, hh:mmA');
         }
     });
