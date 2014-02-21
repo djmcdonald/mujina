@@ -3,6 +3,7 @@
 </div>
 
 <script type="text/template" id="channels-template">
+    <p>Currently browsing: <%%- rc.currently_browsing() %></p>
     <div class="row">
         <div class="col-xs-2 grid-header">&nbsp;</div>
         <%% _.each(rc.time_ranges(), function(time_range) { %>
@@ -14,8 +15,8 @@
     <div class="row">
         <div class="col-xs-2 channel-row"><%%- channel.get('call_sign') %> - <%%- channel.get('number') %></div>
         <%% channel.get('shows').each(function(show) { %>
-        <div class="col-xs-no-width channel-row" style="width: <%%- show.width() %>%;" data-toggle="tooltip" title="<%%- show.title %> - <%%- show.description %>">
-            <%%- show.get('title') %> - <%%- show.get('description') %>
+        <div class="col-xs-no-width channel-row show-popover" style="width: <%%- show.width() %>%;" data-toggle="popover" data-title="<%%- show.get('title') %>" data-content="<%%- show.popover() %>">
+            <%%- show.show_description() %>
         </div>
         <%% }); %>
     </div>

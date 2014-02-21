@@ -1,13 +1,32 @@
 (function ($) {
-    $('tooltip').tooltip();
     _.templateSettings.variable = "rc";
 
     var Show = Backbone.RelationalModel.extend({
-        defaults: {
-            title: null
-        },
         width: function() {
             return (this.get('duration') / 3600) * 83;
+        },
+        show_description: function() {
+            var description = this.get('title');
+
+            if (this.get('description')) {
+                description += ' - ' + this.get('description');
+            }
+
+            return description;
+        },
+        popover: function() {
+            var start = moment(this.get('start_time'), 'YYYY-MM-DD HH:mm:ss Z').format('HH:mm');
+            var end = moment(this.get('end_time'), 'YYYY-MM-DD HH:mm:ss Z');
+            var popover = "";
+            if (this.get('description')) {
+                popover += "<p>"
+                    + this.get('description')
+                    + "</p>";
+            }
+
+            popover += "<p>" + start + "</p>";
+
+            return popover;
         }
     });
 
@@ -45,7 +64,7 @@
         time_ranges : function() {
             // Fixed at four intervals for now.
             var time_format = 'HH:mm';
-            var start = moment(this.get('start_time'), 'YYYY-MM-DD HH:mm:ss');
+            var start = moment(this.get('start_time'), 'YYYY-MM-DD HH:mm:ss Z');
             var interval = this.get('duration') / 4;
             return [
                 start.format(time_format),
@@ -53,6 +72,10 @@
                 start.add('seconds', interval).format(time_format),
                 start.add('seconds', interval).format(time_format)
             ];
+        },
+        currently_browsing: function() {
+            //Fri Feb 21, 2014, 09:00 PM
+            return moment(this.get('start_time'), 'YYYY-MM-DD HH:mm:ss Z').format('ddd Do MMM, YYYY, hh:mmA');
         }
     });
 
@@ -74,6 +97,12 @@
                 _.extend(model, viewHelpers);
                 var template = _.template( $("#channels-template").html(), model);
                 $('#tv-guide').html( template );
+
+                $('.show-popover').popover({
+                    placement: 'bottom',
+                    trigger: 'hover',
+                    html: true
+                });
             }, this);
         }
     });
